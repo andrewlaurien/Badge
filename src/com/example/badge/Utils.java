@@ -18,8 +18,11 @@ public class Utils {
             badge = new BadgeDrawable(context);
         }
 
-        badge.setCount(count);
+        
+        
+
         icon.mutate();
+        badge.setCount(count);
         icon.setDrawableByLayerId(R.id.ic_badge, badge);
     }
 }
