@@ -16,7 +16,7 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		 //new FetchCountTask().execute();
+		 new FetchCountTask().execute();
 	}
 
 	@Override
@@ -52,7 +52,7 @@ public class MainActivity extends Activity {
         protected Integer doInBackground(Void... params) {
             // example count. This is where you'd 
             // query your data store for the actual count.
-            return 5; 
+            return 7; 
         }
 
         @Override
