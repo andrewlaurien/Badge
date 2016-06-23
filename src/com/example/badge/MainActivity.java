@@ -9,29 +9,29 @@ import android.view.MenuItem;
 
 public class MainActivity extends Activity {
 
-	  private int mNotificationsCount = 0;
-	
+	private int mNotificationsCount = 0;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
-		 new FetchCountTask().execute();
+
+		new fetchTask().execute();
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		 getMenuInflater().inflate(R.menu.main, menu);
+		getMenuInflater().inflate(R.menu.main, menu);
 
-	        // Get the notifications MenuItem and 
-	        // its LayerDrawable (layer-list)
-	        MenuItem item = menu.findItem(R.id.action_notifications);
-	        LayerDrawable icon = (LayerDrawable) item.getIcon();
+		// Get the notifications MenuItem and
+		// its LayerDrawable (layer-list)
+		MenuItem item = menu.findItem(R.id.action_notifications);
+		LayerDrawable icon = (LayerDrawable) item.getIcon();
 
-	        // Update LayerDrawable's BadgeDrawable
-	        Utils.setBadgeCount(this, icon, mNotificationsCount);
+		// Update LayerDrawable's BadgeDrawable
+		Utils.setBadgeCount(this, icon, mNotificationsCount);
 
-	        return true;
+		return true;
 	}
 
 	@Override
@@ -45,28 +45,28 @@ public class MainActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
-	class FetchCountTask extends AsyncTask<Void, Void, Integer> {
 
-        @Override
-        protected Integer doInBackground(Void... params) {
-            // example count. This is where you'd 
-            // query your data store for the actual count.
-            return 7; 
-        }
+	class fetchTask extends AsyncTask<Void, Void, Integer> {
 
-        @Override
-        public void onPostExecute(Integer count) {
-            updateNotificationsBadge(count);
-        }
-    }
-	
-	 private void updateNotificationsBadge(int count) {
-	        mNotificationsCount = count;
+		@Override
+		protected Integer doInBackground(Void... params) {
+			// example count. This is where you'd
+			// query your data store for the actual count.
+			return 7;
+		}
 
-	        // force the ActionBar to relayout its MenuItems.
-	        // onCreateOptionsMenu(Menu) will be called again.
-	        invalidateOptionsMenu(); 
-	    }
+		@Override
+		public void onPostExecute(Integer count) {
+			updateNotificationsBadge(count);
+		}
+	}
+
+	private void updateNotificationsBadge(int count) {
+		mNotificationsCount = count;
+
+		// force the ActionBar to relayout its MenuItems.
+		// onCreateOptionsMenu(Menu) will be called again.
+		invalidateOptionsMenu();
+	}
 
 }
